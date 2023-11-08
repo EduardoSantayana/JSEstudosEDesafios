@@ -45,14 +45,38 @@ const Werther = new createBooks("the sorrows of young Werther", "Goethe", 1774, 
 const DorianGrey = instancia(createBooks, "the picture of dorian gray", "Oscar Wilde", 1890, "The Picture of Dorian Gray is a novel written by Oscar Wilde and first published in 1890. A mysterious wish is granted to Dorian.", true); 
 
 
-function compareObj(){}
 
+
+function compareObj(objA, ObjB){
+// De maneira simples, verifica se dois objetos foram inicializados pela mesma constructor.
+if ( objA.constructor.name ===  ObjB.constructor.name ) {
+// A propriedade constructor.name verifica qual função construtora que inicializou o objeto, retornando o nome da função como uma string. 
+// Isso permite a comparação dos nomes de várias constructoras.
+
+    console.log("objetos compartilham a mesma constructor", objA.constructor.name ); 
+    return true;
+} else {console.log("Os objetos não possuem a mesma constructor."); 
+console.log("constructos:", objA.constructor.name, ObjB.constructor.name, );
+return false; 
+} }
+
+// teste manual 
+compareObj(Werther, {}); // false, 
+compareObj(Werther, Object) // false 
+compareObj (Werther, mrsDalloway) // true 
+compareObj(mrsDalloway, DorianGrey) // true 
+
+
+function Car(name){
+    this.car = name;
+}
+
+const GtR = new Car("Gt-R");
+
+compareObj(Werther, GtR) // false 
 
 
 /*  As funções construtoras são as funções que são usadas para iniciar e instanciar Objetos com propriedades já definidas/herdas. ´
 A Constructors são chamadas ao lado da palavra-chave new, o que criar o novo objeto. Esse objeto herda propriedades e métodos da sua constructor. Assim, uma constructor pode controlar o encadeamento de herança de um objeto manipulando o protótipo. 
-
-
-
 
 */
